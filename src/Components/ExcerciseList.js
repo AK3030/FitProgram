@@ -27,6 +27,7 @@ class App extends Component {
     if (this.props.excercises === null) {
       return null;
     }
+    console.log("this.props.navigation from excercise list", this.props.navigation);
     return (
         <Main>
           <ExcerciseList

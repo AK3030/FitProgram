@@ -30,14 +30,15 @@ const ArrowImage = styled.Image`
 export default class ExcerciseItem extends Component {
 
   itemPress = () => {
-    console.log("item pressed");
+    // this.props.navigator.navigate('ExcerciseView')
+    console.log("item pressed", this.props.navigation);
   }
 
   render() {
     console.log("excircise item props ---", this.props.excerciseInfo);
     return (
-        <TouchableOpacity>
-          <Main onPress={this.itemPress}>
+        <TouchableOpacity onPress={this.itemPress}>
+          <Main >
               <ExcerciseText>
                 {this.props.name}
               </ExcerciseText>
