@@ -32,7 +32,7 @@ class App extends Component {
         <Main>
           <ExcerciseList
           data = {this.props.excerciseNames}
-          renderItem={({item}) => <ExcerciseItem excerciseInfo={this.props.excercises[item]} name={item}/>}
+          renderItem={({item}) => <ExcerciseItem navigation={this.props.navigation} excerciseInfo={this.props.excercises[item]} name={item}/>}
           keyExtractor={(item, index) => index.toString()}
           />
           <Button 
