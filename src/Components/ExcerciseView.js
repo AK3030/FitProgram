@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { SafeAreaView } from 'react-native';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
+import Timer from './Timer';
 
 const TitleBar = styled.View`
   background-color: blue;
@@ -26,6 +27,11 @@ const InfoRow = styled.View`
   opacity: .5;
   padding-right: 3;
   padding-left: 3;
+  width: 100%;
+`
+
+const MainView = styled.View`
+  align-items: center;
 `
 
  class ExcerciseView extends Component {
@@ -33,11 +39,12 @@ const InfoRow = styled.View`
       super(props);
       this.state = {};
     }
+
     render() {
       let name = this.props.navigation.getParam("name");
       console.log("excerise reps", this.props.excercise);
       return (
-        <SafeAreaView style={{flex: 1}}>
+        <MainView>
           <TitleBar>
             <TitleText>{name}</TitleText>
           </TitleBar>
@@ -45,7 +52,8 @@ const InfoRow = styled.View`
             <InfoText>Sets: {this.props.excercise.sets}</InfoText>
             <InfoText>Reps: {this.props.excercise.reps}</InfoText>
           </InfoRow>
-        </SafeAreaView>
+          <Timer startTime={12}></Timer>
+        </MainView>
       );
     }
 }
