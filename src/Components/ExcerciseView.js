@@ -34,28 +34,45 @@ const MainView = styled.View`
   align-items: center;
 `
 
- class ExcerciseView extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
+const SetRow = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: yellow;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+`
 
-    render() {
-      let name = this.props.navigation.getParam("name");
-      console.log("excerise reps", this.props.excercise);
-      return (
-        <MainView>
-          <TitleBar>
-            <TitleText>{name}</TitleText>
-          </TitleBar>
-          <InfoRow>
-            <InfoText>Sets: {this.props.excercise.sets}</InfoText>
-            <InfoText>Reps: {this.props.excercise.reps}</InfoText>
-          </InfoRow>
-          <Timer startTime={12}></Timer>
-        </MainView>
-      );
-    }
+class ExcerciseView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    let name = this.props.navigation.getParam("name");
+    let arr = Array(4);
+    console.log("array", arr);
+    console.log("excerise reps", this.props.excercise);
+    return (
+      <MainView>
+        <TitleBar>
+          <TitleText>{name}</TitleText>
+        </TitleBar>
+        <InfoRow>
+          <InfoText>Sets: {this.props.excercise.sets}</InfoText>
+          <InfoText>Reps: {this.props.excercise.reps}</InfoText>
+        </InfoRow>
+        <SetRow>
+          {
+            Array(this.props.excercise.sets).fill(<Timer startTime={12}></Timer>)
+          }
+          
+        </SetRow>
+        
+      </MainView>
+    );
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {

@@ -3,15 +3,17 @@ import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import { SafeAreaView } from 'react-native';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const MainDiv = styled.View`
-    margin-top: 100;
     background-color: pink;
     opacity: .5;
-    width: 300;
-    height: 300;
+    width: 50;
+    height: 50;
     align-items: center;
     justify-content: center;
+    border-radius: 50;
+    flex-grow: 0;
 `
 
 const TimerButton = styled.Button`
@@ -31,7 +33,9 @@ class ExcerciseView extends Component {
     }
 
     startTimer = () => {
-        this.timerKey = setInterval(this.decrementTimer, 1000);
+        if (this.state.time > 0) {
+            this.timerKey = setInterval(this.decrementTimer, 1000);
+        }
     }
 
     decrementTimer = () => {
@@ -45,12 +49,17 @@ class ExcerciseView extends Component {
         }
 
         return (
-            <MainDiv>
-                <TimeField>{this.state.time}</TimeField>
-                <TimerButton onPress={this.startTimer} title="START"/>
-                <TimerButton title="RESET"/>
-                <TimerButton title="PAUSE"/>
-            </MainDiv>
+            <TouchableOpacity onPress={this.startTimer}>
+                <MainDiv>
+                    {
+                        this.state.time === 0?
+                        <Text>Done</Text>
+                        :
+                        <TimeField>{this.state.time}</TimeField>
+                    }
+                    
+                </MainDiv>
+            </TouchableOpacity>
         );
     }
 }
